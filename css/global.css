@@ -5,8 +5,13 @@
     --neutral-dark: #0E4356;
     --neutral-light: #95BBC9;
 
+    /* renombrar con prefijo --c-... */
+    
     --normal-font:  'Nunito', sans-serif;
     --display-font: 'Amatic SC', sans-serif;
+    
+    /* renombrar a --font-display y --font-normal */
+
 }
 
 * {
