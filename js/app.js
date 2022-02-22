@@ -16,7 +16,7 @@ async function loadAllPages(){
     home = await loadPage('home/home.html');
     contact = await loadPage('contacto/contacto.html');
 }
- 
+
 async function main(){
     await loadAllPages();
     const ruta = window.location.pathname 
