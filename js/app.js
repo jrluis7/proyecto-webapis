@@ -18,7 +18,7 @@ async function loadAllPages(){
     contact = await loadPage('contacto/contacto.html');
     filtro = await loadPage('filtro/filtro.html');
 }
- 
+
 async function main(){
     await loadAllPages();
     const ruta = window.location.pathname 
