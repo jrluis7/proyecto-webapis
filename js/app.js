@@ -1,4 +1,5 @@
-console.log( 'Hola mundo!' );
+import { homemain } from "/pages/home/funct.js";
+
 
 
 let home,contact,routes;
@@ -12,42 +13,41 @@ async function loadPage( pagina ){
 }
 
 async function loadAllPages(){
-    console.log( '111' )
-    home = await loadPage('home.html');
-    contact = await loadPage('contacto.html');
-    console.log( '222' )
+    home = await loadPage('home/home.html');
+    contact = await loadPage('contacto/contacto.html');
 }
-// loadPage( 'home.html' );
-
+ 
 async function main(){
     await loadAllPages();
     const ruta = window.location.pathname 
     console.log(ruta )
     console.log( '333' )
     routes = {
-        '/':home,
-        '/home':home,
-        '/contacto':contact
+        '/':{html:home, js:homemain},
+        '/home':{html:home, js:homemain},
+        '/contacto':{html:contact}
     }
-    
-    // setTimeout( ()=>{
-    console.log( routes )
-    console.log( routes[ruta] )
-    root.innerHTML = routes[ruta];
-    // }, 1250 )
-
+    paintRoot(routes[ruta]);
 }
 
 function clickNavigation( pathName ){
     window.history.pushState({},pathName,window.location.origin + pathName);
-    root.innerHTML = routes[pathName];
+    paintRoot(routes[pathName]);
 }
 
+function paintRoot(element){
+    root.innerHTML = element.html;
+    if(element.js){
+        element.js();
+    }
+}
+
+
+// Ejecución directa
 await main();
 
 document.querySelectorAll('a').forEach( cadaEnlace=>{
     cadaEnlace.addEventListener( 'click',function(e){
-        console.log( this.pathname )
         e.preventDefault();
         clickNavigation( this.pathname )
     } );
@@ -55,7 +55,7 @@ document.querySelectorAll('a').forEach( cadaEnlace=>{
 } )
 
 window.onpopstate = () => {
-    root.innerHTML = routes[ window.location.pathname ]
+    paintRoot(routes[ window.location.pathname ]);
 }
 
 
