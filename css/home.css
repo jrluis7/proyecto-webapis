@@ -1,0 +1,107 @@
+*{margin: 0;
+    padding: 0;
+    border: 0;
+    box-sizing: border-box;
+    vertical-align: baseline;
+}
+.header{
+
+}
+.header__h1{
+    font-family: var(--display-font);
+    font-weight: 800;
+}
+.main{
+    font-family: var(--normal-font);
+}
+.main__container{
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+}
+.main__perfil{
+    margin: 2rem;
+    position: relative;
+    /* user-select: none;
+    -webkit-user-drag: none; */
+    box-shadow: 10px 10px 20px lightgrey;
+    border-radius: 50px;
+    overflow: hidden
+}
+.main__star{
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 1rem;
+    padding: .5rem;
+    color: white;
+    width: 4rem;
+    height: 4rem;
+}
+.main__star svg{
+    color: orange;
+    fill: orange;
+    transform: scale(1);
+    transition: .1s ease transform;
+}
+.main__star svg:hover{
+    transform: scale(1.1);
+}
+
+.svg-lleno{
+    /* display: none; */
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.main__desc{
+
+}
+.desc{
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+    position: absolute;
+    bottom: 0;
+    left: 25%;
+    width: 50%;
+    margin: auto;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(5px);
+    padding: 1rem;
+    margin: 1rem;
+    border-radius: 1rem;
+}
+.desc__nombre{
+    font-size: 1.5rem;
+    
+}
+.desc__texto{
+    font-size: 1.2rem;
+
+}
+.main__img{
+    display: block;
+}
+.main__botones{
+
+}
+.botones{
+}
+.boton{
+    background: white;
+    border:none;
+    margin: 1rem;
+    padding: 1rem;
+    border-radius: 100px;
+    width: 10rem;
+}
+.botones__like{
+    background: green;
+    
+}
+.botones__dislike{
+    background: red;
+}
