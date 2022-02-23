@@ -1,21 +1,8 @@
-p,
-h1,
-h2,
-h3,
-h4 {
-  margin: 0;
-  padding: 0;
-}
-
-ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
 body {
   background-color: #e8f0f3;
 }
+
+button{cursor: pointer;}
 
 .user {
   width: 100%;
@@ -50,7 +37,6 @@ body {
     rgba(255, 97, 97, 1) 0%,
     rgba(255, 165, 0, 1) 100%
   );
-  /* background-color: var(--neutral-dark); */
 }
 
 .user__img {
@@ -59,7 +45,7 @@ body {
   width: 100%;
   height: 100%;
   border-radius: 5px;
-  padding: 3px;
+  padding: 4px;
   background-color: white;
 }
 
@@ -69,18 +55,18 @@ body {
 }
 
 .user__name {
-  font-family: var(--normal-font);
-  font-weight: bold;
+  font-family: var(--ff-normal);
+  font-weight: 800;
   font-size: 1.75rem;
   text-transform: uppercase;
-  color: var(--neutral-dark);
+  color: var(--c-neutral-dark);
   /* margin-left: 0.5rem; */
 }
 
 .user__title {
-  font-family: var(--normal-font);
+  font-family: var(--ff-normal);
   font-size: 0.9rem;
-  color: var(--neutral-light);
+  color: var(--c-neutral-light);
   margin-bottom: 1.5rem;
   padding-left: 0.15rem;
   /* margin-left: 0.5rem; */
@@ -95,7 +81,7 @@ body {
 }
 
 .user__stat {
-  font-family: var(--normal-font);
+  font-family: var(--ff-normal);
   font-size: 0.8rem;
   color: white;
   padding: 0 0.75rem 0 0;
@@ -118,15 +104,15 @@ body {
 }
 
 .user__likes {
-  color: var(--accent-red);
+  color: var(--c-accent-red);
 }
 
 .user__dislikes {
-  color: var(--accent-orange);
+  color: var(--c-accent-orange);
 }
 
 .user__favs {
-  color: var(--accent-yellow);
+  color: var(--c-accent-yellow);
 }
 
 .user__icon {
@@ -142,11 +128,42 @@ body {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  padding: 2rem;
-  margin-bottom: 1rem;
-  border-radius: 10px;
-  box-shadow: 0px 2.5px 10px 0px hsla(196, 72%, 20%, 0.1);
-  background-color: white;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.user__li{
+  width: 100%;
+}
+
+.user__button{
+  width: 100%;
+  color:var(--c-button, var(--c-accent-yellow));
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  padding: .75rem 2rem;
+  border-radius: 5px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  box-shadow: inset 0 0 0 3px currentColor;
+}
+
+.user__button.active{
+  background-color: var(--c-button, var(--c-accent-yellow));
+  box-shadow: inset 0 0 0 3px var(--c-button, var(--c-accent-yellow));
+  color: white;
+}
+
+.user__button-like{
+  --c-button: var(--c-accent-red)
+}
+
+.user__button-dislike{
+  --c-button: var(--c-accent-orange)
+}
+
+.user__li + .user__li{
+  margin-left: 2rem;
 }
 
 .user__elements {
@@ -157,21 +174,25 @@ body {
 }
 
 .user__subtitle {
-  font-family: var(--normal-font);
-  font-weight: bold;
+  /* font-family: var(--ff-normal);
+  font-weight: 800;
   font-size: 1.5rem;
-  text-transform: uppercase;
-  color: var(--neutral-dark);
+  text-transform: uppercase; */
+  color: var(--c-accent-yellow);
   display: flex;
   align-items: center;
 }
 
+.user__svg{
+  width: 4.5rem;
+  margin: 0 1rem;
+}
+
 .user__subtitle span {
   display: block;
-  height: 3.1px;
+  height: 3.5px;
   width: 100%;
   background-color: currentColor;
-  margin-left: 0.5rem;
 }
 
 .user__grid {
@@ -192,5 +213,25 @@ body {
 }
 
 .user__img-grid .user__img {
+  position: relative;
   object-position: 50% 50%;
+}
+
+.user__star{
+  position: absolute;
+  top: 1rem;
+  left: 0rem;
+  padding-left: .5rem;
+  background-color: currentColor;
+  border-radius: 0 5px 5px 0;
+  overflow: hidden;
+  color: var(--c-accent-yellow);
+  cursor: pointer;
+  transform: translateX(-100%);
+
+  transition: all .3s ease;
+}
+
+.user__img-grid:hover .user__star{
+  transform: translateX(0);
 }
