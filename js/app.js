@@ -16,6 +16,7 @@ async function loadPage( pagina ){
 async function loadAllPages(){
     home = await loadPage('home/home.html');
     contact = await loadPage('contacto/contacto.html');
+    usuario = await loadPage('usuario/usuario.html');
     filtro = await loadPage('filtro/filtro.html');
 }
 
@@ -28,7 +29,8 @@ async function main(){
         '/':{html:home, js:homemain},
         '/home':{html:home, js:homemain},
         '/contacto':{html:contact},
-        '/filtro':{html:filtro, js:filtromain}
+        '/filtro':{html:filtro, js:filtromain},
+        '/usuario':{html:usuario},
     }
     paintRoot(routes[ruta]);
 }
