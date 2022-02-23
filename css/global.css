@@ -15,10 +15,10 @@ footer{
     border: 0;
     box-sizing: border-box;
     vertical-align: baseline;
-    color: white;
-  }
+}
 
 .footer{
+    color: white;
     position: absolute;
     bottom: 0;
     width: 100%;
