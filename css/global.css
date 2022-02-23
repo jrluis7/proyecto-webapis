@@ -1,15 +1,4 @@
 *{
-    box-sizing:border-box;
-}
-
-body{
-    margin:0;
-}
-
-footer{
-    background-color: lightgrey;
-}
-* {
     margin: 0;
     padding: 0;
     border: 0;
@@ -17,6 +6,10 @@ footer{
     vertical-align: baseline;
 }
 
+body{
+    margin:0;
+}
+/*Footer hecho por vuestro papi de confianza*/
 .footer{
     color: white;
     position: absolute;
