@@ -23,7 +23,9 @@ body{
     align-items: flex-start;
 }
 
-
+.enlaces{
+    color: white;
+}
 .svg{
     width: 11em;
 }
