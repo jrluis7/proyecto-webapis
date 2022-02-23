@@ -126,7 +126,7 @@ footer {
   justify-content: space-evenly;
   align-items: center;
 
-  background-color: var(--neutral-dark);
+  background-color: var(--c-neutral-dark);
 }
 
 .header ul {
@@ -152,4 +152,47 @@ footer {
 .header ul li a {
   text-decoration: none;
   color: white;
+}
+
+/* TINDER */
+
+.tinder {
+
+    margin-top: 20px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    gap: 20px;
+}
+
+.tinder .gatoImg {
+    width: 50%;
+}
+
+.tinder .botones {
+    width: 100%;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 40px;
+}
+
+.tinder .botones #like {
+    background-color: greenyellow;
+}
+
+.tinder .botones #dislike {
+    background-color: var(--c-accent-red);
+}
+
+.tinder .botones #fav {
+    background-color: var(--c-accent-yellow);
+}
+
+.tinder .botones span:hover {
+    cursor: pointer;
 }
