@@ -13,6 +13,10 @@
 }
 .main{
     font-family: var(--normal-font);
+    display: flex;
+    flex-flow: row, nowrap;
+    justify-content: center;
+    align-items: center;
 }
 .main__container{
     display: flex;
@@ -25,7 +29,7 @@
     position: relative;
     /* user-select: none;
     -webkit-user-drag: none; */
-    box-shadow: 10px 10px 20px lightgrey;
+    box-shadow:3px 3px 10px lightgrey;
     border-radius: 50px;
     overflow: hidden
 }
@@ -104,4 +108,10 @@
 }
 .botones__dislike{
     background: red;
+}
+.info{
+    display: block;
+    border:1px solid lightgrey;
+    padding: 0 4rem;
+    margin-bottom: 5rem
 }
