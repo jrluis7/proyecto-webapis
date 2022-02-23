@@ -3,7 +3,7 @@ import { filtromain } from "/pages/filtro/funct.js";
 
 
 
-let home,contact,filtro,routes;
+let home,contact,filtro,routes,usuario;
 let root = document.querySelector( '#root' );
 
 async function loadPage( pagina ){
