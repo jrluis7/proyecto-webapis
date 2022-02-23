@@ -2,7 +2,9 @@ body {
   background-color: #e8f0f3;
 }
 
-button{cursor: pointer;}
+button {
+  cursor: pointer;
+}
 
 .user {
   width: 100%;
@@ -132,37 +134,37 @@ button{cursor: pointer;}
   text-align: center;
 }
 
-.user__li{
+.user__li {
   width: 100%;
 }
 
-.user__button{
+.user__button {
   width: 100%;
-  color:var(--c-button, var(--c-accent-yellow));
+  color: var(--c-button, var(--c-accent-yellow));
   font-size: 1.2rem;
   text-transform: uppercase;
-  padding: .75rem 2rem;
+  padding: 0.75rem 2rem;
   border-radius: 5px;
   font-weight: 800;
   letter-spacing: 1px;
   box-shadow: inset 0 0 0 3px currentColor;
 }
 
-.user__button.active{
+.user__button.active {
   background-color: var(--c-button, var(--c-accent-yellow));
   box-shadow: inset 0 0 0 3px var(--c-button, var(--c-accent-yellow));
   color: white;
 }
 
-.user__button-like{
-  --c-button: var(--c-accent-red)
+.user__button-like {
+  --c-button: var(--c-accent-red);
 }
 
-.user__button-dislike{
-  --c-button: var(--c-accent-orange)
+.user__button-dislike {
+  --c-button: var(--c-accent-orange);
 }
 
-.user__li + .user__li{
+.user__li + .user__li {
   margin-left: 2rem;
 }
 
@@ -183,7 +185,7 @@ button{cursor: pointer;}
   align-items: center;
 }
 
-.user__svg{
+.user__svg {
   width: 4.5rem;
   margin: 0 1rem;
 }
@@ -217,11 +219,11 @@ button{cursor: pointer;}
   object-position: 50% 50%;
 }
 
-.user__star{
+.user__star {
   position: absolute;
   top: 1rem;
   left: 0rem;
-  padding-left: .5rem;
+  padding-left: 0.5rem;
   background-color: currentColor;
   border-radius: 0 5px 5px 0;
   overflow: hidden;
@@ -229,9 +231,13 @@ button{cursor: pointer;}
   cursor: pointer;
   transform: translateX(-100%);
 
-  transition: all .3s ease;
+  transition: all 0.3s ease;
 }
 
-.user__img-grid:hover .user__star{
+.user__img-grid .user__img:hover + .user__star {
+  transform: translateX(-0.5rem);
+}
+
+.user__star:hover {
   transform: translateX(0);
 }
