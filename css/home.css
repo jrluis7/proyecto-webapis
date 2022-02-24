@@ -4,23 +4,31 @@
     box-sizing: border-box;
     vertical-align: baseline;
 }
-.header{
-
+body{
+    background-color: #e0eff5;
+}
+.header2{
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: center;
 }
 .header__h1{
     font-family: var(--display-font);
-    font-weight: 800;
+    font-weight: 700;
+    margin-top: 2rem;
+    font-size: 4rem;
 }
 .main{
     font-family: var(--normal-font);
     display: flex;
-    flex-flow: row, nowrap;
+    flex-flow: row nowrap;
     justify-content: center;
     align-items: center;
 }
 .main__container{
     display: flex;
-    flex-flow: column nowrap;
+    flex-flow: row nowrap;
     justify-content: center;
     align-items: center;
 }
@@ -29,9 +37,7 @@
     position: relative;
     /* user-select: none;
     -webkit-user-drag: none; */
-    box-shadow:3px 3px 10px lightgrey;
-    border-radius: 50px;
-    overflow: hidden
+    
 }
 .main__star{
     position: absolute;
@@ -67,16 +73,13 @@
     flex-flow: column nowrap;
     justify-content: flex-start;
     align-items: flex-start;
-    position: absolute;
-    bottom: 0;
-    left: 25%;
-    width: 50%;
-    margin: auto;
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(5px);
+    background: rgba(255, 255, 255, 0.5);
+    /* backdrop-filter: blur(5px); */
     padding: 1rem;
-    margin: 1rem;
-    border-radius: 1rem;
+    margin: 1rem 0;
+    box-shadow:3px 6px 15px rgba( 0, 0, 0, 0.2);
+    border-radius: 10px;
+    width: 100%;
 }
 .desc__nombre{
     font-size: 1.5rem;
@@ -88,6 +91,8 @@
 }
 .main__img{
     display: block;
+    box-shadow:3px 6px 15px rgba( 0, 0, 0, 0.2);
+    border-radius: 10px;
 }
 .main__botones{
 
@@ -114,4 +119,31 @@
     border:1px solid lightgrey;
     padding: 0 4rem;
     margin-bottom: 5rem
+}
+
+.controles {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-evenly;
+    
+}
+.control {
+    background-color: orange;
+    width: 4rem;
+    height: 4rem;
+    margin: 1rem 0;
+    border-radius: 15px;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: center;
+    box-shadow:3px 6px 15px rgba( 0, 0, 0, 0.2);
+    cursor: pointer;
+}
+
+.aleatorio {
+}
+.pause {
+}
+.anterior {
 }
