@@ -216,7 +216,7 @@ button {
 
 .user__star {
   position: absolute;
-  top: 1rem;
+  top: 4rem;
   left: 0rem;
   padding-left: 0.5rem;
   background-color: currentColor;
@@ -229,7 +229,19 @@ button {
   transition: all 0.3s ease;
 }
 
-.user__img-grid .user__img:hover + .user__star {
+.user__star-likes {
+  top: 1rem;
+  color: var(--c-accent-red);
+}
+
+.user__star-dislikes {
+  top: 1rem;
+  color: var(--c-accent-orange);
+}
+
+.user__img-grid .user__img:hover + .user__star,
+.user__img:hover + .user__star + .user__star,
+.user__img:hover + .user__star + .user__star + .user__star {
   transform: translateX(-0.5rem);
 }
 
