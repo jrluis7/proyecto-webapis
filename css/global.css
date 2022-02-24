@@ -170,13 +170,35 @@ footer {
     gap: 20px;
 }
 
-.tinder .gatoImg {
+.tinder .tinder__swap {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+}
+
+.tinder .tinder__swap .swap__gatos {
+
+}
+
+.tinder .tinder__swap .swap__perros {
+
+}
+
+.activo {
+  color: var(--c-accent-red);
+}
+
+.tinder .tinder__swap #btn__swap {
+  background-color: var(--c-neutral-dark);
+}
+
+.tinder .tinder__gato {
     width: 50%;
     position: relative;
     left: 0;
 }
 
-.tinder .botones {
+.tinder .tinder__botones {
     width: 100%;
 
     display: flex;
@@ -185,19 +207,24 @@ footer {
     gap: 40px;
 }
 
-.tinder .botones #like {
+.tinder .tinder__botones button {
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.tinder .tinder__botones #btn__like {
     background-color: greenyellow;
 }
 
-.tinder .botones #dislike {
+.tinder .tinder__botones #btn__dislike {
     background-color: var(--c-accent-red);
 }
 
-.tinder .botones #fav {
+.tinder .tinder__botones #btn__fav {
     background-color: var(--c-accent-yellow);
 }
 
-.tinder .botones span:hover {
+.tinder .tinder__botones button:hover {
     cursor: pointer;
 }
 
@@ -212,7 +239,7 @@ footer {
 }
 
 .moverArriba {
-  transform: translateY(-400%);
+  transform: translateY(-200%);
   transition:  all .2s ease-in;
 }
 
@@ -220,8 +247,10 @@ footer {
   width: 100%;
   max-width: 1200px;
 
-  height: 18.75em;
+  height: 31.25em;
   object-fit: cover;
+
+  border-radius: 10px;
 }
 
 .gatoActual {

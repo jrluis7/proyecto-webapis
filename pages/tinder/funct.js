@@ -1,75 +1,148 @@
-const URL_GET_IMG = "https://api.thecatapi.com/v1/images/search";
-const URL_FAV = "https://api.thecatapi.com/v1/favourites";
-const URL_VOTO = "https://api.thecatapi.com/v1/votes";
+
+let urls = {
+    url_img: "https://api.thecatapi.com/v1/images/search",
+    url_fav: "https://api.thecatapi.com/v1/favourites",
+    url_voto: "https://api.thecatapi.com/v1/votes",
+    estado: "gato"
+};
+
+const URL_GATO = "api.thecatapi.com";
+const URL_PERRO = "api.thedogapi.com";
+
 
 const userId = "miguel";
 let imagenActual, imagenSiguiente;
 
 export function tindermain (){
 
-    console.log( "TINDER" );
-    
-    let nodoImagen = document.querySelector('.gatoImg');
+    let nodoImagen = document.querySelector('.tinder__gato');
 
-    let nodoLike = document.querySelector('#like');
-    let nodoDislike = document.querySelector('#dislike');
-    let nodoFav = document.querySelector('#fav');
+    let nodoLike = document.querySelector('#btn__like');
+    let nodoDislike = document.querySelector('#btn__dislike');
+    let nodoFav = document.querySelector('#btn__fav');
+    let nodoBtn = document.querySelector('#btn__swap');
 
     pintaImagenInicial ();
 
     nodoLike.addEventListener ('click', () => {
         imagenActual.nodo.classList.add('moverDerecha');
+        desactivaBotones();
         sendVoto(URL_VOTO, imagenActual.id, 1).then ( datosVoto => {
             console.log(datosVoto);
-            devuelveObjetoImgRandom ().then ( imagen => {
+            devuelveObjetoImgRandom (urls.url_img).then ( imagen => {
                 nodoImagen.removeChild(imagenActual.nodo);
                 imagenSiguiente.nodo.classList.add('gatoActual');
                 imagenActual = imagenSiguiente;
                 imagenSiguiente = imagen;
                 nodoImagen.append(imagenSiguiente.nodo);
+                activaBotones();
             });
         });
     });
 
     nodoDislike.addEventListener ('click', () => {
         imagenActual.nodo.classList.add('moverIzquierda');
-        sendVoto(URL_VOTO, imagenActual.id, 0).then (datosVoto => {
+        desactivaBotones();
+        sendVoto(urls.url_voto, imagenActual.id, 0).then (datosVoto => {
             console.log(datosVoto);
-            devuelveObjetoImgRandom ().then ( imagen => {
+            devuelveObjetoImgRandom (urls.url_img).then ( imagen => {
                 nodoImagen.removeChild(imagenActual.nodo);
                 imagenSiguiente.nodo.classList.add('gatoActual');
                 imagenActual = imagenSiguiente;
                 imagenSiguiente = imagen;
                 nodoImagen.append(imagenSiguiente.nodo);
+                activaBotones();
             });
         });
     });
 
     nodoFav.addEventListener ('click', () => {
         imagenActual.nodo.classList.add('moverArriba');
-        guardaImagenFav (URL_FAV, imagenActual.id).then ( datosFav => {
+        desactivaBotones();
+        guardaImagenFav (urls.url_fav, imagenActual.id).then ( datosFav => {
             console.log(datosFav);
-            devuelveObjetoImgRandom ().then ( imagen => {
+            devuelveObjetoImgRandom (urls.url_img).then ( imagen => {
                 nodoImagen.removeChild(imagenActual.nodo);
                 imagenSiguiente.nodo.classList.add('gatoActual');
                 imagenActual = imagenSiguiente;
                 imagenSiguiente = imagen;
                 nodoImagen.append(imagenSiguiente.nodo);
+                activaBotones();
             });
         });
     });
 
+    nodoBtn.addEventListener ('click', () => {
+        cambiaEstado ();
+    });
 }
 
-function devuelveObjetoImgRandom () {
+function cambiaEstado () {
+
+    let nodoSpanGatos = document.querySelector('.swap__gatos');
+    let nodoSpanPerros = document.querySelector('.swap__perros');
+
+    let urlImg = urls.url_img.split("/");
+    let urlFav = urls.url_fav.split("/");
+    let urlVoto = urls.url_voto.split("/");
+
+    if (urls.estado === "gato") {
+        nodoSpanGatos.classList.remove('activo');
+        urls.estado = "perro";
+        urlImg[2] = URL_PERRO;
+        urlFav[2] = URL_PERRO;
+        urlVoto[2] = URL_PERRO;
+        nodoSpanPerros.classList.add('activo');
+    } else {
+        nodoSpanPerros.classList.remove('activo');
+        urls.estado = "gato";
+        urlImg[2] = URL_GATO;
+        urlFav[2] = URL_GATO;
+        urlVoto[2] = URL_GATO;
+        nodoSpanGatos.classList.add('activo');
+    }
+    urlImg = urlImg.join("/");
+    urlFav = urlFav.join("/");
+    urlVoto = urlVoto.join("/");
+    
+    urls.url_img = urlImg;
+    urls.url_fav = urlFav;
+    urls.url_voto = urlVoto;
+
+    console.log(urls);
+}
+
+function desactivaBotones () {
+    let nodoBotones = document.querySelectorAll('.tinder__botones button');
+    nodoBotones.forEach(boton => {
+        boton.disabled = true;
+    });
+}
+
+function activaBotones () {
+    let nodoBotones = document.querySelectorAll('.tinder__botones button');
+    nodoBotones.forEach(boton => {
+        boton.disabled = false;
+    });
+}
+
+function devuelveObjetoImgRandom (url) {
     return new Promise ((resolve, reject) => {
-        getImagen (URL_GET_IMG).then ( datosImg => {
+        getImagen (url).then ( datosImg => {
+            let nombreGato = "";
             console.log(datosImg);
+            console.log(datosImg[0].breeds);
+            if(datosImg[0].breeds.length >= 1) {
+                console.log(datosImg[0].breeds[0].name);
+                nombreGato = datosImg[0].breeds[0].name;
+
+            }
             let idImagen = datosImg[0].id;
             let nodoImg = creaNodoImagen (datosImg);
             resolve ({
                 nodo: nodoImg,
-                id: idImagen
+                id: idImagen,
+                nombre: nombreGato
             });
         }).catch ( error => {
             reject (error);
@@ -78,15 +151,15 @@ function devuelveObjetoImgRandom () {
 }
 
 function pintaImagenInicial () {
-    let nodoImagen = document.querySelector('.gatoImg');
-    devuelveObjetoImgRandom ().then ( imagen => {
+    let nodoImagen = document.querySelector('.tinder__gato');
+    devuelveObjetoImgRandom (urls.url_img).then ( imagen => {
         console.log(imagen);
         imagenActual = imagen;
-        devuelveObjetoImgRandom ().then ( imagen => {
+        imagenActual.nodo.classList.add('gatoActual');
+        nodoImagen.append(imagenActual.nodo);
+        devuelveObjetoImgRandom (urls.url_img).then ( imagen => {
             imagenSiguiente = imagen;
             console.log(imagen);
-            imagenActual.nodo.classList.add('gatoActual');
-            nodoImagen.append(imagenActual.nodo);
             nodoImagen.append(imagenSiguiente.nodo);
         })
     }).catch( error => {
