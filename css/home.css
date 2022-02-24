@@ -30,11 +30,17 @@ body{
     display: flex;
     flex-flow: row nowrap;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
+    max-width: 700px;
+    width: 90%;
 }
 .main__perfil{
     margin: 2rem;
     position: relative;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
     /* user-select: none;
     -webkit-user-drag: none; */
     
@@ -80,24 +86,38 @@ body{
     box-shadow:3px 6px 15px rgba( 0, 0, 0, 0.2);
     border-radius: 10px;
     width: 100%;
+    transition: all .2s ease-in-out;
 }
-.desc__nombre{
+.desc.active{
+    /* overflow: visible; */
+}
+.desc__raza{
     font-size: 1.5rem;
     
 }
+.desc__subraza{
+    font-size: .9rem;
+    font-style: italic;
+}
 .desc__texto{
     font-size: 1.2rem;
-
+    margin-top: .5rem;
+    display: none;
+}
+.desc__texto.active{
+    display: block;
 }
 .main__img{
     display: block;
     box-shadow:3px 6px 15px rgba( 0, 0, 0, 0.2);
     border-radius: 10px;
+    width: 100%;
 }
 .main__botones{
 
 }
 .botones{
+
 }
 .boton{
     background: white;
@@ -125,7 +145,7 @@ body{
     display: flex;
     flex-flow: column nowrap;
     justify-content: space-evenly;
-    
+    margin-top: 4rem;
 }
 .control {
     background-color: orange;
