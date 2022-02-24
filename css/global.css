@@ -149,7 +149,7 @@ footer {
   cursor: pointer;
 }
 
-.header ul li a {
+.header ul a li {
   text-decoration: none;
   color: white;
 }
@@ -159,6 +159,8 @@ footer {
 .tinder {
 
     margin-top: 20px;
+    margin-bottom: 20px;
+    overflow: hidden;
 
     display: flex;
     flex-direction: column;
@@ -170,6 +172,8 @@ footer {
 
 .tinder .gatoImg {
     width: 50%;
+    position: relative;
+    left: 0;
 }
 
 .tinder .botones {
@@ -196,3 +200,32 @@ footer {
 .tinder .botones span:hover {
     cursor: pointer;
 }
+
+.moverDerecha {
+    transform: translateX(400%);
+    transition: all .2s ease-in;
+}
+
+.moverIzquierda {
+    transform: translateX(-400%);
+    transition: all .2s ease-in;
+}
+
+.moverArriba {
+  transform: translateY(-400%);
+  transition:  all .2s ease-in;
+}
+
+.gato {
+  width: 100%;
+  max-width: 1200px;
+
+  height: 18.75em;
+  object-fit: cover;
+}
+
+.gatoActual {
+  position: absolute;
+  top: 0;
+}
+
