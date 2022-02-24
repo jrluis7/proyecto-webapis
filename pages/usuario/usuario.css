@@ -62,7 +62,6 @@ button {
   font-size: 1.75rem;
   text-transform: uppercase;
   color: var(--c-neutral-dark);
-  /* margin-left: 0.5rem; */
 }
 
 .user__title {
@@ -176,11 +175,7 @@ button {
 }
 
 .user__subtitle {
-  /* font-family: var(--ff-normal);
-  font-weight: 800;
-  font-size: 1.5rem;
-  text-transform: uppercase; */
-  color: var(--c-accent-yellow);
+  color: var(--c-accent-red);
   display: flex;
   align-items: center;
 }
@@ -200,7 +195,7 @@ button {
 .user__grid {
   margin-top: 1rem;
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 0.5rem;
 }
 

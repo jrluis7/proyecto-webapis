@@ -22,7 +22,7 @@ const HEADER_CATAPI = {
 }
 
 let limit = 20
-let filter = 'fav'
+let filter = 'like' //fav, like, dislike
 let userID
 
 const URL_CATAPI = 'https://api.thecatapi.com/v1'
@@ -36,6 +36,15 @@ let favourites = []
 let nodeGrid =  document.querySelector('#grid')
 let nodeSVG = document.querySelector('.user__svg')
 let nodeSubtitle = document.querySelector('.user__subtitle')
+
+function containsObj( obj, arr){
+    for( let i = 0; i < arr.length; i++){
+        if(arr[i].favID === obj.favID){
+            return true
+        }
+    }
+    return false
+}
 
 function getData( url ){
 
@@ -52,8 +61,17 @@ function getData( url ){
 
             switch ( element.value ){
                 case undefined:
-                    // Fav
-                    favourites.push( {favID: element.id, url: element.image.url, id: element.image_id} )
+
+                    let newFav = {
+                        favID: element.id, 
+                        url: element.image.url, 
+                        id: element.image_id
+                    }
+
+                    if( containsObj(newFav, favourites) === false ){
+                        favourites.push(newFav)
+                    }
+
                 break
                 default:
                     // Like / Dislike
@@ -127,9 +145,10 @@ function paintData(){
 
 function paintImages( param_element ){
 
+    
+
     let nodeContainer = document.createElement('li')
     nodeContainer.classList.add('user__img-grid')
-    // nodeContainer.setAttribute('data-id', param_element.id)
 
     let nodeImg = document.createElement('img')
     nodeImg.classList.add('user__img')
@@ -153,28 +172,58 @@ function paintImages( param_element ){
     $(nodeButton).on({
         click: function(){
 
+            $(this).prop('disabled', true)
+
             if(this.classList.contains('liked')){
+                let index = favourites.indexOf(param_element)
+                favourites.splice(index, 1)
+
+                paintUser()
+
+                this.classList.remove('liked')
+                this.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" class="user__icon" viewBox="0 0 16 16">${starEmptySVG}</svg>`
+
+                if( nodeGrid.dataset.type === 'fav' ){
+                    $(this).closest('.user__img-grid').remove()
+                }
+
                 fetch(`https://api.thecatapi.com/v1/favourites/${param_element.favID}`, {
                 method: 'DELETE',
                 headers: HEADER_CATAPI
                 }).then(respuesta => respuesta.json()).then(data => {
-                    console.log('deleted')
-                    favourites = []
-                    getData( URL_FAV )
+
+                    $(this).prop('disabled', false)
+
                 })
             } else{
                 let data = JSON.stringify({
                     "image_id": param_element.id
                     });
+
+                this.classList.add('liked')
+                this.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" class="user__icon" viewBox="0 0 16 16">${starSVG}</svg>`
     
                 fetch('https://api.thecatapi.com/v1/favourites', {
                     method: 'POST',
                     headers: HEADER_CATAPI,
                     body: data
                 }).then(respuesta => respuesta.json()).then(data => {
-                    favourites = []
-                    getData( URL_FAV )
+
+                    fetch(URL_FAV, {
+                        headers: HEADER_CATAPI
+                    }).then( respuesta => respuesta.json()).then( data => {
+                        for( let fav of data){
+                            if( param_element.id === fav.image_id ){
+                                favourites[favourites.indexOf(param_element)].favID = fav.id
+                            }
+                        }
+
+                        $(this).prop('disabled', false)
+                        
+                    })
                 })
+                favourites.push(param_element)
+                paintUser()
             }
             
         }
@@ -185,6 +234,7 @@ function paintImages( param_element ){
     nodeGrid.appendChild(nodeContainer)
 }
 
+
 $('#user-like').on({
     click: function(){
         $('.user__button').removeClass('active')
@@ -194,6 +244,8 @@ $('#user-like').on({
         $(nodeSubtitle).css({
             color: 'var(--c-accent-red)'
         })
+
+        nodeGrid.setAttribute('data-type', 'likes')
 
         filter = 'like'
         paintData()
@@ -210,6 +262,8 @@ $('#user-dislike').on({
             color: 'var(--c-accent-orange)'
         })
 
+        nodeGrid.setAttribute('data-type', 'dislikes')
+
         filter = 'dislike'
         paintData()
     }
@@ -224,6 +278,8 @@ $('#user-fav').on({
         $(nodeSubtitle).css({
             color: 'var(--c-accent-yellow)'
         })
+
+        nodeGrid.setAttribute('data-type', 'fav')
 
         filter = 'fav'
         paintData()
