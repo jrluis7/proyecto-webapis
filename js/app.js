@@ -46,8 +46,6 @@ function paintRoot(element){
         element.js();
     }
 }
-
-
 // Ejecución directa
 await main();
 
@@ -62,7 +60,19 @@ document.querySelectorAll('a').forEach( cadaEnlace=>{
 window.onpopstate = () => {
     paintRoot(routes[ window.location.pathname ]);
 }
+document.getElementById("botonmenu").addEventListener("click", function( event ) {
+    // presentar la cuenta de clicks realizados sobre el elemento con id "prueba"
+    document.getElementById("nav").classList.remove("inactivo")
+  })
 
+  document.getElementById("nav").addEventListener("click", function(event){
+
+    console.log(event.target)
+    if(event.target == document.getElementById("nav")){
+        document.getElementById("nav").classList.add("inactivo");
+    }
+
+  })
 
 
 

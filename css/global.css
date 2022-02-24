@@ -95,9 +95,7 @@ svg {
 
 /*>>>>>>>> FOOTER <<<<<<<< */
 .footer{
-    color: white;
-    position: absolute;
-    bottom: 0;
+    color: white; 
     width: 100%;
     padding: 1em 0;
     background-color: #101010;
@@ -133,44 +131,91 @@ tr {
   border-collapse: collapse;
   border-spacing: 0;
 }
-
-footer {
-  background-color: lightgrey;
+.header{
+  width: 100%;
+  background-color: #efefef;
 }
-
-.header {
+.logo{
+  max-width: 14em;
+}
+.header__contenido{
+  width: 90%;
+  max-width: 1500px;
+  margin: auto;
   display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
+  flex-flow: row nowrap;
+  justify-content: space-between;
   align-items: center;
-
-  background-color: var(--neutral-dark);
 }
-
-.header ul {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  margin: 0;
-}
-
-.header ul li {
-  list-style: none;
-  display: block;
-  text-transform: uppercase;
-  padding: 20px;
-  font-family: var(--normal-font);
-}
-
-.header ul li:hover {
-  background-color: #00000088;
+.header__boton{
   cursor: pointer;
 }
-
-.header ul li a {
-  text-decoration: none;
-  color: white;
+.header__lineas{
+  display: block;
+  width: 3em;
+  margin: .5em;
+  border-radius: 2px;
+  height: 4px;
+  transition: all .5s ease;
+  background: linear-gradient(90deg, var(--c-accent-red) 0%, var(--c-accent-yellow) 100%);
 }
+.header__svg{
+  width: 3em;
+}
+.header__boton:hover .arriba{
+    transform: translateY(-2px);
+}
+.header__boton:hover .abajo{
+  transform: translateY(2px);
+}
+.header__nav{
+  width: 100%;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  background-color: rgba(0, 0, 0, .5);
+  z-index: 3;
+  transform: translateX(0);
+  transition: all .5s ease;
+}
+.inactivo{
+  transform: translateX(-100%);
+}
+.contenedor{
+  width: 70%;
+  height: 100%;
+  background-color: var(--c-neutral-light);
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: center;
+}
+.header__ul{
+  width: 70%;
+  height: 50%;
+}
+.header__link{
+  width: 20%;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-around;
+  align-items: center;
+  font-family: var(--ff-display);
+  font-weight: bold;
+  font-size: 2em;
+}
+.header__flecha{
+  fill: var(--c-accent-orange);
+  transition: all .5s ease;
+}
+.header__li:hover .header__flecha{
+  transform: translateX(4px);
+}
+footer {
+  font-family: var(--ff-normal);
+}
+
+
 .enlaces{
     color: white;
 }
