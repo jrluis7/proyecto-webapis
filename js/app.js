@@ -1,7 +1,8 @@
 import { homemain } from "/pages/home/funct.js";
 import { filtromain } from "/pages/filtro/funct.js";
+import { usuariojs } from "/pages/usuario/funct.js";
 
-let home,contact,filtro,routes;
+let home,contact,filtro,usuario,routes;
 let root = document.querySelector( '#root' );
 
 async function loadPage( pagina ){
@@ -15,6 +16,7 @@ async function loadAllPages(){
     home = await loadPage('home/home.html');
     contact = await loadPage('contacto/contacto.html');
     filtro = await loadPage('filtro/filtro.html');
+    usuario = await loadPage('usuario/usuario.html');
 }
 
 async function main(){
@@ -26,7 +28,8 @@ async function main(){
         '/':{html:home, js:homemain},
         '/home':{html:home, js:homemain},
         '/contacto':{html:contact},
-        '/filtro':{html:filtro, js:filtromain}
+        '/filtro':{html:filtro, js:filtromain},
+        '/usuario':{html:usuario, js:usuariojs}
     }
     paintRoot(routes[ruta]);
 }
