@@ -27,7 +27,7 @@ const HEADER_CATAPI = {
 
 // let limit = 20
 let filter = 'like' //fav, like, dislike
-let userID
+let userID = 'user123'
 
 const URL_CATAPI = 'https://api.thecatapi.com/v1'
 const URL_FAV = URL_CATAPI + '/favourites'
@@ -93,17 +93,18 @@ function containsObj( obj, arr){
     return false
 }
 
-function getData( url ){
+function getData( url){
 
-    fetch( url, {
+    fetch( url + `?sub_id=${userID}`, {
         headers: HEADER_CATAPI
     }).then( respuesta => respuesta.json()).then( data => {
 
         let promises = []
-        if(!userID){
+        
+        if( !userID && data[0] ){
             userID = data[0].user_id
         }
-
+        // console.log(data)
         for( let element of data ){
 
             switch ( element.value ){
@@ -131,8 +132,10 @@ function getData( url ){
 
         Promise.all(promises).then( respuesta => {
 
-            paintUser()
-            paintData()
+            if( url === URL_FAV && filter === 'fav' || url === URL_LIKES && (filter === 'like' || filter === 'dislike')){
+                paintUser()
+                paintData()
+            }
 
         } )
 
@@ -156,16 +159,19 @@ function getSrc( element ){
         }
 
     })
+
 }
 
 getData( URL_FAV )
 getData( URL_LIKES )
 
 function paintUser(){
+
     $('.user__title').html(`@${userID}`)
     $('#data-like').html(likes.length)
     $('#data-dislike').html(dislikes.length)
     $('#data-fav').html(favourites.length)
+
 }
 
 function paintData(){
@@ -183,10 +189,12 @@ function paintData(){
         break
     }
 
+    console.log('array', imageArray)
+
     nodeGrid.innerHTML = ''
     
     for( let i = 0; i < imageArray.length; i++ ){
-        paintImages( imageArray[i], imageArray)
+        paintImages( imageArray[i] )
     }
 
 }
@@ -226,15 +234,37 @@ function createButton( type, param_element ){
 
     let buttonSVG = eval(`${type}EmptySVG`)
 
-    eval(type).filter( item => {
-        if(item.id === param_element.id){
+    for( let item of eval(type) ){
 
+        if( item.id === param_element.id ){
             buttonSVG = eval(`${type}SVG`)
             nodeButton.classList.add( type )
-            param_element.favID = item.favID
-            
         }
-    })
+    }
+
+    let typeArray
+    let typeKey
+
+    if( filter !== 'dislike'){
+        switch ( filter ){
+            case 'fav':
+                typeArray = likes
+                typeKey = 'likeID'
+            break
+            case 'like':
+                typeArray = favourites
+                typeKey = 'favID'
+            break
+        }
+    
+        for( let item of typeArray ){
+    
+            if( item.id === param_element.id){
+                param_element[typeKey] = item[typeKey]
+            }
+    
+        }
+    }
 
     nodeButton.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" class="user__icon" viewBox="0 0 16 16">${buttonSVG}</svg>`
 
@@ -246,6 +276,9 @@ function createButton( type, param_element ){
             if(this.classList.contains( type )){
 
                 let typeID = type === 'favourites' ? param_element.favID : param_element.likeID
+
+                console.log(typeID)
+                console.log(param_element.likeID)
 
                 let index = eval(type).indexOf(param_element)
                 eval(type).splice(index, 1)
@@ -278,7 +311,7 @@ function createButton( type, param_element ){
                 this.classList.add( type )
                 this.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" class="user__icon" viewBox="0 0 16 16">${eval(`${type}SVG`)}</svg>`
 
-                let data = { "image_id": param_element.id }
+                let data = { 'image_id': param_element.id, 'sub_id': userID}
 
                 if( type === 'likes' ){
                     data.value = 1
