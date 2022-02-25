@@ -20,7 +20,7 @@ export function tindermain (){
     let nodoLike = document.querySelector('#btn__like');
     let nodoDislike = document.querySelector('#btn__dislike');
     let nodoFav = document.querySelector('#btn__fav');
-    let nodoBtn = document.querySelector('#btn__swap');
+    let nodoBtn = document.querySelector('.btn__swap');
 
     document.querySelector('.swap__gatos').classList.add('activo');
     desactivaBotones ();
@@ -45,7 +45,6 @@ export function tindermain (){
     });
 
     nodoDislike.addEventListener ('click', () => {
-        console.log(imagenActual);
         imagenActual.nodo.classList.add('moverIzquierda');
         desactivaBotones();
         sendVoto(urls.url_voto, imagenActual.id, 0).then (datosVoto => {
@@ -78,9 +77,14 @@ export function tindermain (){
     });
 
     nodoBtn.addEventListener ('click', () => {
+        
+        if (nodoBtn.classList.contains('swapOn')) {
+            nodoBtn.classList.remove('swapOn');
+        } else {
+            nodoBtn.classList.add('swapOn');
+        }
         cambiaEstado ();
         desactivaBotones ();
-        this.disabled = true;
         actualizaImagenes (urls.url_img).then ( () => {
             activaBotones ();
         });
@@ -124,7 +128,7 @@ function cambiaEstado () {
 
 function desactivaBotones () {
     let nodoBotones = document.querySelectorAll('.tinder__botones button');
-    let nodoBtnSwap = document.querySelector('#btn__swap');
+    let nodoBtnSwap = document.querySelector('.btn__swap');
     nodoBtnSwap.disabled = true;
     nodoBotones.forEach(boton => {
         boton.disabled = true;
@@ -133,7 +137,7 @@ function desactivaBotones () {
 
 function activaBotones () {
     let nodoBotones = document.querySelectorAll('.tinder__botones button');
-    let nodoBtnSwap = document.querySelector('#btn__swap');
+    let nodoBtnSwap = document.querySelector('.btn__swap');
     nodoBtnSwap.disabled = false;
     nodoBotones.forEach(boton => {
         boton.disabled = false;
@@ -144,9 +148,7 @@ function devuelveObjetoImgRandom (url) {
     return new Promise ((resolve, reject) => {
         getImagen (url).then ( datosImg => {
             let nombreGato = "";
-            console.log(datosImg[0].breeds);
             if(datosImg[0].breeds.length >= 1) {
-                console.log(datosImg[0].breeds[0].name);
                 nombreGato = datosImg[0].breeds[0].name;
             }
             let idImagen = datosImg[0].id;
@@ -166,14 +168,11 @@ function pintaImagenInicial (url) {
     return new Promise ( (resolve, reject) => {
         let nodoImagen = document.querySelector('.tinder__gato');
         devuelveObjetoImgRandom (url).then ( imagen => {
-            console.log(imagen);
             imagenActual = imagen;
             imagenActual.nodo.classList.add('gatoActual');
             nodoImagen.append(imagenActual.nodo);
             devuelveObjetoImgRandom (url).then ( imagen => {
                 imagenSiguiente = imagen;
-                imagenSiguiente.nodo.classList.add('gatoSiguiente');
-                console.log(imagen);
                 nodoImagen.append(imagenSiguiente.nodo);
                 resolve ();
             });

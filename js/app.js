@@ -25,7 +25,6 @@ async function main(){
     await loadAllPages();
     const ruta = window.location.pathname 
     console.log( ruta );
-    console.log( '333' );
     routes = {
         '/':{html:home, js:homemain},
         '/home':{html:home, js:homemain},
