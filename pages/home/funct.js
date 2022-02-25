@@ -8,7 +8,7 @@ export function homemain(){
     async function getGato(){
         return new Promise( (resolve, reject)=>{
 
-            fetch('https://api.thecatapi.com/v1/images/search/?limit=2', {
+            fetch('https://api.thecatapi.com/v1/images/search/?limit=50', {
                 headers: {
                     'x-ai-key':'29efc343-53e3-4844-af53-8c308654bd56'
                 }
@@ -27,6 +27,7 @@ export function homemain(){
     let nodoDescTexto;
     let gatoAnterior;
     let nodoAnterior = document.querySelector('.anterior')
+    let nodoImagen = document.querySelector('.main__img')
 
     function test2() {
         if(localStorage.getItem('gato')){
@@ -50,13 +51,13 @@ export function homemain(){
                 }else{
                     console.log("try")
                     // debugger
-                    if(i>=vargato.length){
+                    if(i>=vargato.length-1){
                         test2()
                     }
                 }
             }
+            let nodoDescripcion = document.querySelector('.desc')
 
-            let nodoImagen = document.querySelector('.main__img')
             nodoImagen.addEventListener('load', function(){
                 
                 nodoDescripcion.innerHTML = `
@@ -85,29 +86,67 @@ export function homemain(){
             })
             nodoImagen.setAttribute('src', `${gatoConBreeds.url}`)
 
-            let nodoDescripcion = document.querySelector('.desc')
             
         })
     } 
     test2()
-    
+
+
     let nodoRandom = document.querySelector('.aleatorio')
     nodoRandom.addEventListener('click', function(){
-        console.log('dentro')
         test2()
     })
-    
+
+
     let nodoDesc = document.querySelector('.desc')
     nodoDesc.addEventListener('click', function(){
-        console.log('dentro de click de DESC')
-        for (let texto of nodoDescTexto){
-            texto.classList.toggle('active')
+        nodoDesc.classList.toggle('active')
+    })
+
+    let interRandomGato;
+    
+    let nodoBarra = document.querySelector('.barra')
+    let interBarra
+    
+    
+    addInterval()
+
+    let nodoPause = document.querySelector('.pause')
+    nodoPause.addEventListener('click', function(){
+        if(nodoPause.classList.contains('play')){
+            addInterval()
+            nodoImagen.addEventListener('mouseleave', addInterval)
+            nodoPause.classList.remove('play')
+        }else{
+            clearInterval(interRandomGato)
+            nodoImagen.removeEventListener('mouseleave', addInterval)
+            nodoPause.classList.add('play')
         }
     })
 
-    // let interRandomGato = setInterval(()=>test2(), 8000)
+    nodoImagen.addEventListener('mouseenter', function(){
+        clearInterval(interRandomGato)
+        
+    })
+    nodoImagen.addEventListener('mouseleave', addInterval)
+
+    function addInterval(){
+        interRandomGato = setInterval(()=>test2(), 8000)
+        interBarra = setInterval(function(){
+            let i=0; i<100; i++
+            nodoBarra.style.width = `${i}%`
+            
+        }, 25)
+    }
 
 
+
+
+
+    let nodoBack = document.querySelector('.anterior')
+    nodoBack.addEventListener('click', function(){
+        console.log('WIP')
+    })
 
 
 
