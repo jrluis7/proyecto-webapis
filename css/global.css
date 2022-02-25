@@ -136,7 +136,7 @@ tr {
   background-color: #efefef;
 }
 .logo{
-  max-width: 14em;
+  max-width: 13em;
 }
 .header__contenido{
   width: 90%;
@@ -193,16 +193,18 @@ tr {
 .header__ul{
   width: 70%;
   height: 50%;
+  margin: auto;
 }
 .header__link{
-  width: 20%;
+  margin: auto;
+  width: 30%;
   display: flex;
   flex-flow: row nowrap;
-  justify-content: space-around;
+  justify-content: center;
   align-items: center;
   font-family: var(--ff-display);
   font-weight: bold;
-  font-size: 2em;
+  font-size: 3em;
 }
 .header__flecha{
   fill: var(--c-accent-orange);
