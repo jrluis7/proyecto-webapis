@@ -14,7 +14,7 @@ const userId = "miguel";
 let imagenActual, imagenSiguiente;
 
 export function tindermain (){
-
+    
     let nodoImagen = document.querySelector('.tinder__gato');
 
     let nodoLike = document.querySelector('#btn__like');
@@ -22,12 +22,16 @@ export function tindermain (){
     let nodoFav = document.querySelector('#btn__fav');
     let nodoBtn = document.querySelector('#btn__swap');
 
-    pintaImagenInicial ();
+    document.querySelector('.swap__gatos').classList.add('activo');
+    desactivaBotones ();
+    pintaImagenInicial (urls.url_img). then ( () => {
+        activaBotones ();
+    });
 
     nodoLike.addEventListener ('click', () => {
         imagenActual.nodo.classList.add('moverDerecha');
         desactivaBotones();
-        sendVoto(URL_VOTO, imagenActual.id, 1).then ( datosVoto => {
+        sendVoto(urls.url_voto, imagenActual.id, 1).then ( datosVoto => {
             console.log(datosVoto);
             devuelveObjetoImgRandom (urls.url_img).then ( imagen => {
                 nodoImagen.removeChild(imagenActual.nodo);
@@ -41,6 +45,7 @@ export function tindermain (){
     });
 
     nodoDislike.addEventListener ('click', () => {
+        console.log(imagenActual);
         imagenActual.nodo.classList.add('moverIzquierda');
         desactivaBotones();
         sendVoto(urls.url_voto, imagenActual.id, 0).then (datosVoto => {
@@ -74,6 +79,11 @@ export function tindermain (){
 
     nodoBtn.addEventListener ('click', () => {
         cambiaEstado ();
+        desactivaBotones ();
+        this.disabled = true;
+        actualizaImagenes (urls.url_img).then ( () => {
+            activaBotones ();
+        });
     });
 }
 
@@ -88,6 +98,7 @@ function cambiaEstado () {
 
     if (urls.estado === "gato") {
         nodoSpanGatos.classList.remove('activo');
+        console.log(nodoSpanGatos);
         urls.estado = "perro";
         urlImg[2] = URL_PERRO;
         urlFav[2] = URL_PERRO;
@@ -109,11 +120,12 @@ function cambiaEstado () {
     urls.url_fav = urlFav;
     urls.url_voto = urlVoto;
 
-    console.log(urls);
 }
 
 function desactivaBotones () {
     let nodoBotones = document.querySelectorAll('.tinder__botones button');
+    let nodoBtnSwap = document.querySelector('#btn__swap');
+    nodoBtnSwap.disabled = true;
     nodoBotones.forEach(boton => {
         boton.disabled = true;
     });
@@ -121,6 +133,8 @@ function desactivaBotones () {
 
 function activaBotones () {
     let nodoBotones = document.querySelectorAll('.tinder__botones button');
+    let nodoBtnSwap = document.querySelector('#btn__swap');
+    nodoBtnSwap.disabled = false;
     nodoBotones.forEach(boton => {
         boton.disabled = false;
     });
@@ -130,12 +144,10 @@ function devuelveObjetoImgRandom (url) {
     return new Promise ((resolve, reject) => {
         getImagen (url).then ( datosImg => {
             let nombreGato = "";
-            console.log(datosImg);
             console.log(datosImg[0].breeds);
             if(datosImg[0].breeds.length >= 1) {
                 console.log(datosImg[0].breeds[0].name);
                 nombreGato = datosImg[0].breeds[0].name;
-
             }
             let idImagen = datosImg[0].id;
             let nodoImg = creaNodoImagen (datosImg);
@@ -150,20 +162,39 @@ function devuelveObjetoImgRandom (url) {
     });
 }
 
-function pintaImagenInicial () {
-    let nodoImagen = document.querySelector('.tinder__gato');
-    devuelveObjetoImgRandom (urls.url_img).then ( imagen => {
-        console.log(imagen);
-        imagenActual = imagen;
-        imagenActual.nodo.classList.add('gatoActual');
-        nodoImagen.append(imagenActual.nodo);
-        devuelveObjetoImgRandom (urls.url_img).then ( imagen => {
-            imagenSiguiente = imagen;
+function pintaImagenInicial (url) {
+    return new Promise ( (resolve, reject) => {
+        let nodoImagen = document.querySelector('.tinder__gato');
+        devuelveObjetoImgRandom (url).then ( imagen => {
             console.log(imagen);
-            nodoImagen.append(imagenSiguiente.nodo);
-        })
-    }).catch( error => {
-        console.log(error);
+            imagenActual = imagen;
+            imagenActual.nodo.classList.add('gatoActual');
+            nodoImagen.append(imagenActual.nodo);
+            devuelveObjetoImgRandom (url).then ( imagen => {
+                imagenSiguiente = imagen;
+                imagenSiguiente.nodo.classList.add('gatoSiguiente');
+                console.log(imagen);
+                nodoImagen.append(imagenSiguiente.nodo);
+                resolve ();
+            });
+        }).catch( error => {
+            reject( error );
+        });
+    });
+}
+
+function actualizaImagenes (url) {
+    return new Promise ( (resolve, reject) => {
+        try {
+            let nodoImagen = document.querySelector('.tinder__gato');
+            nodoImagen.removeChild(imagenActual.nodo);
+            nodoImagen.removeChild(imagenSiguiente.nodo);
+            pintaImagenInicial (url).then ( () => {
+                resolve ();
+            });
+        } catch ( error ) {
+            reject ( error );
+        }
     });
 }
 
