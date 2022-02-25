@@ -221,7 +221,7 @@ function paintImages( param_element ){
         nodeContainer.appendChild(dislikeButton)
     }
 
-    nodeGrid.appendChild(nodeContainer)
+    $(nodeGrid).prepend(nodeContainer)
 }
 
 function createButton( type, param_element ){
