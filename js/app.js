@@ -1,6 +1,7 @@
 import { homemain } from "/pages/home/funct.js";
 import { filtromain } from "/pages/filtro/funct.js";
 import { tindermain } from "/pages/tinder/funct.js";
+import { usuariojs } from "/pages/usuario/funct.js";
 
 
 let home, contact, filtro, tinder, usuario, routes;
@@ -16,9 +17,9 @@ async function loadPage( pagina ){
 async function loadAllPages(){
     home = await loadPage('home/home.html');
     contact = await loadPage('contacto/contacto.html');
-    usuario = await loadPage('usuario/usuario.html');
     filtro = await loadPage('filtro/filtro.html');
     tinder = await loadPage('tinder/tinder.html');
+    usuario = await loadPage('usuario/usuario.html');
 }
 
 async function main(){
@@ -31,8 +32,9 @@ async function main(){
         '/home':{html:home, js:homemain},
         '/contacto':{html:contact},
         '/filtro':{html:filtro, js:filtromain},
-        '/usuario':{html:usuario},
+        '/usuario':{html:usuario, js:usuariojs},
         '/tinder':{html:tinder, js:tindermain}
+
     }
     paintRoot(routes[ruta]);
 }
