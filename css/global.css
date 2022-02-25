@@ -96,8 +96,6 @@ svg {
 /*>>>>>>>> FOOTER <<<<<<<< */
 .footer{
     color: white;
-    position: absolute;
-    bottom: 0;
     width: 100%;
     padding: 1em 0;
     background-color: #101010;
