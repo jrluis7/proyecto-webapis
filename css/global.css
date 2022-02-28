@@ -227,18 +227,19 @@ footer {
 
 
 .tinder .tinder__gato {
-    width: 50%;
-    position: relative;
-    left: 0;
+  width: 50%;
+  position: relative;
+  left: 0;
+  height: 31.25em;
 }
 
 .tinder .tinder__botones {
-    width: 100%;
+  width: 100%;
 
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    gap: 40px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 40px;
 }
 
 .tinder .tinder__botones button {
@@ -250,29 +251,29 @@ footer {
 }
 
 .tinder .tinder__botones #btn__like {
-    background-color: greenyellow;
+  background-color: greenyellow;
 }
 
 .tinder .tinder__botones #btn__dislike {
-    background-color: var(--c-accent-red);
+  background-color: var(--c-accent-red);
 }
 
 .tinder .tinder__botones #btn__fav {
-    background-color: var(--c-accent-yellow);
+  background-color: var(--c-accent-yellow);
 }
 
 .tinder .tinder__botones button:hover {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .moverDerecha {
-    transform: translateX(400%);
-    transition: all .2s ease-in;
+  transform: translateX(400%);
+  transition: all .2s ease-in;
 }
 
 .moverIzquierda {
-    transform: translateX(-400%);
-    transition: all .2s ease-in;
+  transform: translateX(-400%);
+  transition: all .2s ease-in;
 }
 
 .moverArriba {
@@ -298,3 +299,44 @@ footer {
   top: 0;
 }
 
+/* LISTADO */
+
+.listado {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  gap: 20px;
+}
+
+.listado__botones {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+.listado__imagenes {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 10px;
+
+  padding-right: 40px;
+  padding-left: 40px;
+}
+
+.listado__imagenes .contenedor {
+  height: 18.75em;
+}
+
+.listado__imagenes .contenedor .imagen {
+  width: 100%;
+  height: 100%;
+  max-width: 1200px;
+
+  object-fit: cover;
+
+  border-radius: 10px;
+}
