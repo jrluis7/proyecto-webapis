@@ -5,6 +5,8 @@ import { filtromain } from "/pages/filtro/funct.js";
 
 let home,contact,filtro,routes,usuario;
 let root = document.querySelector( '#root' );
+let keys = [];
+let keyusando;
 
 async function loadPage( pagina ){
     const respuesta = await fetch( './pages/'+pagina );
@@ -61,7 +63,6 @@ window.onpopstate = () => {
     paintRoot(routes[ window.location.pathname ]);
 }
 document.getElementById("botonmenu").addEventListener("click", function( event ) {
-    // presentar la cuenta de clicks realizados sobre el elemento con id "prueba"
     document.getElementById("nav").classList.remove("inactivo")
   })
 
@@ -74,16 +75,18 @@ document.getElementById("botonmenu").addEventListener("click", function( event )
 
   })
   document.getElementById("header__botonregistro").addEventListener("click", function( event ) {
-    // presentar la cuenta de clicks realizados sobre el elemento con id "prueba"
     document.getElementById("menu__login").classList.remove("inactivo")
   })
 
 
   document.getElementById("menu__login").addEventListener("click", function(event){
-
     console.log(event.target)
     if(event.target == document.getElementById("menu__login")){
         document.getElementById("menu__login").classList.add("inactivo");
     }
 
+  })
+  document.getElementById("sendData").addEventListener("click", function( event ) {
+    let indice = document.getElementById("form__select").selectedIndex;
+    keyusando = keys[indice];
   })
