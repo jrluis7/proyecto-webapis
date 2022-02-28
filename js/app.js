@@ -28,6 +28,7 @@ async function main(){
     await loadAllPages();
     const ruta = window.location.pathname 
     console.log( ruta );
+
     routes = {
         '/':{html:home, js:homemain},
         '/home':{html:home, js:homemain},
@@ -38,12 +39,16 @@ async function main(){
         '/listado':{html:listado, js:listadomain}
 
     }
+
     paintRoot(routes[ruta]);
+    changeTitle( ruta )
 }
 
 function clickNavigation( pathName ){
     window.history.pushState({},pathName,window.location.origin + pathName);
     paintRoot(routes[pathName]);
+    changeTitle( pathName )
+
 }
 
 function paintRoot(element){
@@ -68,6 +73,26 @@ window.onpopstate = () => {
     paintRoot(routes[ window.location.pathname ]);
 }
 
+
+// Cambiar Titulo de la Página
+
+function changeTitle( ruta ){
+
+    let stringTitle
+
+    if( ruta === '/'){
+        stringTitle = 'Home'
+    } else {
+        stringTitle = capitalize(ruta.replace('/', ''))
+    }
+
+    document.title = `${stringTitle} | Rubrikat`
+
+}
+
+function capitalize ( string ){
+    return string.substr(0,1).toUpperCase()+string.substr(1)
+}
 
 
 

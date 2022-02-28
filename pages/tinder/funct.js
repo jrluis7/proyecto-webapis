@@ -1,4 +1,3 @@
-
 let urls = {
     url_img: "https://api.thecatapi.com/v1/images/search",
     url_fav: "https://api.thecatapi.com/v1/favourites",
@@ -32,7 +31,7 @@ export function tindermain (){
         imagenActual.nodo.classList.add('moverDerecha');
         desactivaBotones();
         sendVoto(urls.url_voto, imagenActual.id, 1).then ( datosVoto => {
-            console.log(datosVoto);
+            // console.log(datosVoto);
             devuelveObjetoImgRandom (urls.url_img).then ( imagen => {
                 nodoImagen.removeChild(imagenActual.nodo);
                 imagenSiguiente.nodo.classList.add('gatoActual');
@@ -48,7 +47,7 @@ export function tindermain (){
         imagenActual.nodo.classList.add('moverIzquierda');
         desactivaBotones();
         sendVoto(urls.url_voto, imagenActual.id, 0).then (datosVoto => {
-            console.log(datosVoto);
+            // console.log(datosVoto);
             devuelveObjetoImgRandom (urls.url_img).then ( imagen => {
                 nodoImagen.removeChild(imagenActual.nodo);
                 imagenSiguiente.nodo.classList.add('gatoActual');
@@ -64,7 +63,7 @@ export function tindermain (){
         imagenActual.nodo.classList.add('moverArriba');
         desactivaBotones();
         guardaImagenFav (urls.url_fav, imagenActual.id).then ( datosFav => {
-            console.log(datosFav);
+            // console.log(datosFav);
             devuelveObjetoImgRandom (urls.url_img).then ( imagen => {
                 nodoImagen.removeChild(imagenActual.nodo);
                 imagenSiguiente.nodo.classList.add('gatoActual');
@@ -102,7 +101,7 @@ function cambiaEstado () {
 
     if (urls.estado === "gato") {
         nodoSpanGatos.classList.remove('activo');
-        console.log(nodoSpanGatos);
+        // console.log(nodoSpanGatos);
         urls.estado = "perro";
         urlImg[2] = URL_PERRO;
         urlFav[2] = URL_PERRO;

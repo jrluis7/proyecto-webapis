@@ -1,4 +1,3 @@
-
 :root {
   /* ----- COLOR ----- */
   --c-black: #0c1113;
@@ -83,7 +82,6 @@ iframe {
   width: 100%;
   /* object-fit: cover; */
   /* max-width: 100%; */
-
 }
 
 svg {
@@ -92,17 +90,16 @@ svg {
   fill: currentColor;
 }
 
-
 /*>>>>>>>> FOOTER <<<<<<<< */
-.footer{
-    color: white;
-    width: 100%;
-    padding: 1em 0;
-    background-color: #101010;
-    display: flex;
-    flex-flow: row nowrap;
-    justify-content: space-evenly;
-    align-items: flex-start;
+.footer {
+  color: white;
+  width: 100%;
+  padding: 1em 0;
+  background-color: #101010;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-evenly;
+  align-items: flex-start;
 }
 
 form,
@@ -169,86 +166,85 @@ footer {
   text-decoration: none;
   color: white;
 }
-.enlaces{
-    color: white;
+.enlaces {
+  color: white;
 }
-.svg{
-    width: 11em;
+.svg {
+  width: 11em;
 }
-.cajacopy{
-    display: flex;
-    flex-flow: column nowrap;
-    justify-content: center;
-    align-items: center;
-    padding-top: 1em;
-    font-size: 1.2em;
+.cajacopy {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+  padding-top: 1em;
+  font-size: 1.2em;
 }
-.cajaredes{
-    display: flex;
-    flex-flow: column nowrap;
-    justify-content: center;
-    align-items: center;
-    padding-top: 1em;
-    font-size: 1.2em;
+.cajaredes {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+  padding-top: 1em;
+  font-size: 1.2em;
 }
-.cajasvg{
-    width: 100%;
-    display: flex;
-    flex-flow: row nowrap;
+.cajasvg {
+  width: 100%;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-evenly;
+  align-items: center;
+  padding-top: 1em;
+}
+.redsocial {
+  cursor: pointer;
+  width: 1em;
+  fill: white;
+  transition: all 0.5s ease;
+}
+.fbook:hover {
+  fill: #3b5998;
+}
+.insta:hover {
+  fill: #dd2a7b;
+}
+.twitter:hover {
+  fill: #08a0e9;
+}
+.snapchat:hover {
+  fill: #fffc00;
+}
+.github:hover {
+  fill: #572364;
+}
+@media screen and (max-width: 1000px) {
+  .footer {
+    flex-direction: column-reverse;
     justify-content: space-evenly;
     align-items: center;
-    padding-top: 1em;
-}
-.redsocial{
-    cursor: pointer;
-    width: 1em;
-    fill: white;
-    transition: all .5s ease;
-}
-.fbook:hover{
-    fill: #3b5998;
-}
-.insta:hover{
-    fill: #dd2a7b;
-}
-.twitter:hover{
-    fill: #08a0e9;
-}
-.snapchat:hover{
-    fill: #fffc00;
-}
-.github:hover{
-    fill: #572364;
-}
-@media  screen and (max-width:1000px) {
-    .footer{
-        flex-direction: column-reverse;
-        justify-content: space-evenly;
-        align-items: center;
-    }
+  }
 }
 
 /* TINDER */
 
 .tinder {
-    margin-top: 20px;
-    margin-bottom: 20px;
+  margin-top: 20px;
+  margin-bottom: 20px;
 
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 
-    gap: 2rem;
-    
-    width: 100%;
-    max-width: 1000px;
-    margin: 2rem auto;
-    padding: 2rem;
-    border-radius: 10px;
-    background-color: white;
-    box-shadow: 0px 2.5px 10px 0px hsla(196, 72%, 20%, 0.1);
+  gap: 2rem;
 
+  width: 100%;
+  max-width: 1000px;
+  margin: 2rem auto;
+  padding: 2rem;
+  border-radius: 10px;
+  background-color: white;
+  box-shadow: 0px 2.5px 10px 0px hsla(196, 72%, 20%, 0.1);
 }
 
 .tinder .tinder__swap {
@@ -308,69 +304,86 @@ footer {
   left: 60%;
 }
 
-
 .tinder .tinder__gato {
   width: 100%;
+  /* max-width: 800px; */
+  height: 0;
+  padding: 35% 0;
   position: relative;
-  height: 30vw;
-  max-height: 30vw;
+  /* height: 40vw; */
+  /* max-height: 80vh; */
   overflow: hidden;
   border-radius: 5px;
 }
 
 .tinder .tinder__botones {
-  width: 50%;
+  width: 60%;
   display: flex;
   justify-content: center;
   align-items: stretch;
   gap: 2rem;
 }
 
-.tinder .tinder__botones button {
+.tinder .btn-like {
+  --c-button: var(--c-accent-red);
+}
+
+.tinder .btn-dislike {
+  --c-button: var(--c-accent-orange);
+}
+
+.tinder .btn-fav {
+  --c-button: var(--c-accent-yellow);
+}
+
+.tinder .tinder__btn {
   width: 100%;
   padding: 10px;
   border-radius: 10px;
   font-family: var(--ff-display);
   font-size: 1.5em;
   font-weight: bold;
+  color: white;
+  background-color: var(--c-button);
+  box-shadow: inset 0px 0px 0px 3px var(--c-button);
+
+  transition: all 0.3s ease;
 }
 
-.tinder .tinder__botones #btn__like {
-  background-color: var(--c-accent-red);
+.tinder .tinder__icon {
+  margin: 0 auto;
+  width: 1.75rem;
+  padding: 0.5rem 0;
+  fill: currentColor;
 }
 
-.tinder .tinder__botones #btn__dislike {
-  background-color: var(--c-accent-orange);
-}
-
-.tinder .tinder__botones #btn__fav {
-  background-color: var(--c-accent-yellow);
-}
-
-.tinder .tinder__botones button:hover {
+.tinder .tinder__btn:hover {
+  color: var(--c-button);
   cursor: pointer;
+  background-color: white;
+  box-shadow: inset 0px 0px 0px 3px var(--c-button);
 }
 
 .moverDerecha {
   transform: translateX(400%);
-  transition: all .2s ease-in;
+  transition: all 0.2s ease-in;
 }
 
 .moverIzquierda {
   transform: translateX(-400%);
-  transition: all .2s ease-in;
+  transition: all 0.2s ease-in;
 }
 
 .moverArriba {
   transform: translateY(-200%);
-  transition:  all .2s ease-in;
+  transition: all 0.2s ease-in;
 }
 
 .gato {
   width: 100%;
   height: 100%;
   /* max-width: 1200px; */
-/* 
+  /* 
   -webkit-box-shadow: 0px 0px 15px -4px #000000; 
   box-shadow: 0px 0px 15px -4px #000000; */
   border-radius: 5px;
