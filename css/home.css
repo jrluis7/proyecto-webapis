@@ -12,11 +12,11 @@ body{
     flex-flow: row nowrap;
     justify-content: center;
     align-items: center;
+    margin-top: 2rem;
 }
 .header__h1{
     font-family: var(--display-font);
     font-weight: 700;
-    margin-top: 2rem;
     font-size: 4rem;
 }
 .main{
