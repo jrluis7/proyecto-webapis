@@ -178,9 +178,6 @@ tr {
   transform: translateX(0);
   transition: all .5s ease;
 }
-.inactivo{
-  transform: translateX(-100%);
-}
 .contenedor{
   width: 70%;
   height: 100%;
@@ -219,62 +216,62 @@ footer {
 
 
 .enlaces{
-    color: white;
+  color: white;
 }
 .svg{
-    width: 11em;
+  width: 11em;
 }
 .cajacopy{
-    display: flex;
-    flex-flow: column nowrap;
-    justify-content: center;
-    align-items: center;
-    padding-top: 1em;
-    font-size: 1.2em;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+  padding-top: 1em;
+  font-size: 1.2em;
 }
 .cajaredes{
-    display: flex;
-    flex-flow: column nowrap;
-    justify-content: center;
-    align-items: center;
-    padding-top: 1em;
-    font-size: 1.2em;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+  padding-top: 1em;
+  font-size: 1.2em;
 }
 .cajasvg{
-    width: 100%;
-    display: flex;
-    flex-flow: row nowrap;
-    justify-content: space-evenly;
-    align-items: center;
-    padding-top: 1em;
+  width: 100%;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-evenly;
+  align-items: center;
+  padding-top: 1em;
 }
 .redsocial{
-    cursor: pointer;
-    width: 1em;
-    fill: white;
-    transition: all .5s ease;
+  cursor: pointer;
+  width: 1em;
+  fill: white;
+  transition: all .5s ease;
 }
 .fbook:hover{
-    fill: #3b5998;
+  fill: #3b5998;
 }
 .insta:hover{
-    fill: #dd2a7b;
+  fill: #dd2a7b;
 }
 .twitter:hover{
-    fill: #08a0e9;
+  fill: #08a0e9;
 }
 .snapchat:hover{
-    fill: #fffc00;
+  fill: #fffc00;
 }
 .github:hover{
-    fill: #572364;
+  fill: #572364;
 }
 @media  screen and (max-width:1000px) {
-    .footer{
-        flex-direction: column-reverse;
-        justify-content: space-evenly;
-        align-items: center;
-    }
+  .footer{
+    flex-direction: column-reverse;
+    justify-content: space-evenly;
+    align-items: center;
+  }
 }
 /*>>>>>>>> Login <<<<<<<< */
 .formulario{
@@ -288,7 +285,7 @@ footer {
   background-color: black;
 }
 .formulario__imagen{
-  width: 50%;
+  width: 40%;
 }
 .header__login{
   width: 100%;
@@ -307,11 +304,22 @@ footer {
 }
 .formulario__caja{
   width: 50%;
+  height: 25%;
   display: flex;
-  flex-flow: row nowrap;
-  justify-content: center;
+  flex-flow: column nowrap;
+  justify-content: space-between;
   align-items: center;
 }
 .form__select{
+  display: block;
+  width: 10em;
   background-color: white;
+}
+.form__enviar{
+  width: 10em;
+  display: block;
+  background-color: white;
+}
+.inactivo{
+  transform: translateX(-100%);
 }

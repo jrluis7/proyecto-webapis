@@ -73,6 +73,17 @@ document.getElementById("botonmenu").addEventListener("click", function( event )
     }
 
   })
+  document.getElementById("header__botonregistro").addEventListener("click", function( event ) {
+    // presentar la cuenta de clicks realizados sobre el elemento con id "prueba"
+    document.getElementById("menu__login").classList.remove("inactivo")
+  })
 
 
+  document.getElementById("menu__login").addEventListener("click", function(event){
 
+    console.log(event.target)
+    if(event.target == document.getElementById("menu__login")){
+        document.getElementById("menu__login").classList.add("inactivo");
+    }
+
+  })
