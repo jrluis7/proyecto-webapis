@@ -31,6 +31,8 @@ body {
   line-height: 1.4;
   color: var(--c-black);
   min-height: 100vh;
+  display:flex;
+  flex-direction:column;
 }
 
 h1,
@@ -169,6 +171,11 @@ footer {
   text-decoration: none;
   color: white;
 }
+
+#root{
+  flex-grow:1;
+}
+
 .enlaces{
     color: white;
 }
