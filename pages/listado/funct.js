@@ -28,20 +28,32 @@ export function listadomain (){
                     this.classList.add('swapOn');
                 }
                 cambiaEstado ();
+                $('.preloader').css({
+                    'display': 'block'
+                });
                 $('#raza').empty();
                 $('#categoria').empty();
+                $('.listado__imagenes').empty();
                 inicializaListado ();
             }
         });
 
         $('#raza').on({
             change: function () {
+                $('.preloader').css({
+                    'display': 'block'
+                });
+                $('.listado__imagenes').empty();
                 filtraImagenes ();
             }
         });
 
         $('#categoria').on({
             change: function () {
+                $('.preloader').css({
+                    'display': 'block'
+                });
+                $('.listado__imagenes').empty();
                 filtraImagenes ();
             }
         });
@@ -163,7 +175,6 @@ function filtraImagenes () {
     let idRaza = devuelveIdRaza ($('#raza').val());
     let idCategoria = devuelveIdCategoria ($('#categoria').val());
     desactivaBotones();
-    $('.listado__imagenes').empty();
     getImagenes (urls.url_img, idCategoria, idRaza).then ( datos => {
         pintaImagenes ( datos );
         activaBotones ();
@@ -242,6 +253,9 @@ function getCategories (url) {
 }
 
 function pintaImagenes (listaImagenes) {
+    $('.preloader').css({
+        'display': 'none'
+    });
     let nodoListado = document.querySelector('.listado__imagenes');
     listaImagenes.forEach( imagen => {
         let nodoImagen = devuelveNodoImg (imagen.url);

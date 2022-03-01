@@ -377,3 +377,24 @@ footer {
   object-fit: cover;
   border-radius: 10px;
 }
+
+.preloader {
+  width: 200px;
+  height: 200px;
+  border: 15px solid var(--c-neutral-light);
+  border-top: 15px solid var(--c-neutral-dark);
+  border-radius: 50%;
+  animation-name: girar;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+
+@keyframes girar {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
