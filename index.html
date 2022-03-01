@@ -17,15 +17,55 @@
 </head>
 <body>
 
-    <nav class="header">
-        <ul>
-            <a href="/"><li> Home </li></a>
-            <a href="/tinder"><li> Tinder </li></a>
-            <a href="/contacto"><li> Contacto </li></a>
-            <a href="/listado"><li> Listado </li></a>
-            <li><a href="/usuario"> Usuario </a></li>
-        </ul>
-    </nav>
+    <header class="header">
+        <div class="header__contenido">
+            <div class="header__boton" id="botonmenu">
+            <span class="header__lineas arriba"></span>
+            <span class="header__lineas abajo"></span>
+            </div>
+            <h1 class="header__h1"><img src="assets/logo.webp" alt="Rubricat" class="logo"></h1>
+            <a href="#" class="header__signup" id="header__botonregistro">
+                <svg xmlns="http://www.w3.org/2000/svg" class="header__svg" viewBox="0 0 16 16">
+                    <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+                    <path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm12 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1v-1c0-1-1-4-6-4s-6 3-6 4v1a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12z"/>
+                  </svg>
+            </a>
+        </div>
+        <nav class="header__nav inactivo" id="nav">
+            <div class="contenedor">
+            <ul class="header__ul">
+                <li class="header__li"><a href="/" class="header__link">Inicio <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" class="header__flecha" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
+                  </svg></a></li>
+                  <li class="header__li"><a href="/tinder" class="header__link">Tinder <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" class="header__flecha" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
+                  </svg></a></li>
+                  <li class="header__li"><a href="/listado" class="header__link">Listado <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" class="header__flecha" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
+                  </svg></a></li>
+                  <li class="header__li"><a href="/usuario" class="header__link">Usuario <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" class="header__flecha" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
+                  </svg></a></li>
+            </ul>
+        </div>
+        </nav>
+        <!--  Formulario con keys  -->
+        <div class="header__login inactivo" id="menu__login">
+            <div class="formulario">
+                <img src="assets/logosinfondo.png" alt="" class="formulario__imagen">
+                <div class="formulario__caja">
+                    <select name="Usuario" class="form__select" id="form__select">
+                        <option value="sergio">Sergio</option>
+                        <option value="luis" selected>Luis</option>
+                        <option value="alba">Alba</option>
+                        <option value="miguel">Miguel</option>
+                        <option value="pablo">Pablo</option>
+                    </select>
+                    <button class="form__enviar" id="sendData">Enviar</button>
+                </div>
+            </div>
+        </div>
+    </header>
     <!--  SPA -> Single Page Application  -->
     <div id="root" >
 

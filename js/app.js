@@ -6,6 +6,8 @@ import { listadomain } from "/pages/listado/funct.js";
 
 let home, contact, filtro, tinder, listado, usuario, routes;
 let root = document.querySelector( '#root' );
+let keys = ["54d13939-bd09-450f-84f0-2603538f5eed","key2","key3","key4","key5"];
+let keyusando;
 
 async function loadPage( pagina ){
     const respuesta = await fetch( './pages/' + pagina );
@@ -48,11 +50,11 @@ function clickNavigation( pathName ){
 
 function paintRoot(element){
     root.innerHTML = element.html;
+    document.getElementById("nav").classList.add("inactivo");
     if(element.js){
         element.js();
     }
 }
-
 // Ejecución directa
 await main();
 
@@ -67,7 +69,32 @@ document.querySelectorAll('a').forEach( cadaEnlace=>{
 window.onpopstate = () => {
     paintRoot(routes[ window.location.pathname ]);
 }
+document.getElementById("botonmenu").addEventListener("click", function( event ) {
+    document.getElementById("nav").classList.remove("inactivo")
+})
+
+document.getElementById("nav").addEventListener("click", function(event){
+    console.log(event.target)
+    if(event.target == document.getElementById("nav")){
+        document.getElementById("nav").classList.add("inactivo");
+    }
+})
+
+document.getElementById("header__botonregistro").addEventListener("click", function( event ) {
+    document.getElementById("menu__login").classList.remove("inactivo")
+})
 
 
+document.getElementById("menu__login").addEventListener("click", function(event){
+    console.log(event.target)
+    if(event.target == document.getElementById("menu__login")){
+        document.getElementById("menu__login").classList.add("inactivo");
+    }
 
-
+})
+document.getElementById("sendData").addEventListener("click", function( event ) {
+    let indice = document.getElementById("form__select").selectedIndex;
+    keyusando = keys[indice];
+    document.getElementById("menu__login").classList.add("inactivo");
+    console.log(keyusando);
+})
