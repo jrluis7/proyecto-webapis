@@ -1,16 +1,19 @@
 <div class="listado">
     <div class="listado__botones">
-        <div>
-            <button> PERROS </button>
-            <button> GATOS </button>
+        <div class="listado__swap">
+            <span class="swap__gatos"> GATOS </span>
+            <button class="btn__swap"> </button>
+            <span class="swap__perros"> PERROS </span>
         </div>
-        <div>
-            <select name="razas" id="raza">
-                <option value="" disabled selected>Raza</option>
-            </select>
-            <select name="categorias" id="categoria">
-                <option value="" disabled selected>Categoria</option>
-            </select>
+        <div class="contenedor__filtros">
+            <div class="contenedor__select">
+                <span class="identificador__select">Raza</span>
+                <select name="razas" id="raza"></select>
+            </div>
+            <div class="contenedor__select">
+                <span class="identificador__select">Categoria</span>
+                <select name="categorias" id="categoria"></select>
+            </div>
         </div>
     </div>
     <div class="listado__imagenes">

@@ -169,7 +169,7 @@ footer {
     gap: 20px;
 }
 
-.tinder .tinder__swap {
+.tinder__swap, .listado__swap {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -224,7 +224,6 @@ footer {
 .swapOn::before {
   left: 60%;
 }
-
 
 .tinder .tinder__gato {
   width: 50%;
@@ -307,7 +306,10 @@ footer {
   justify-content: center;
   align-items: center;
 
-  gap: 20px;
+  gap: 40px;
+
+  padding-top: 20px;
+  padding-bottom: 20px;
 }
 
 .listado__botones {
@@ -316,6 +318,42 @@ footer {
   justify-content: center;
   align-items: center;
   gap: 20px;
+}
+
+.listado__swap .swap__gatos, .listado__swap .swap__perros {
+  font-family: var(--ff-display);
+  font-size: 2em;
+  font-weight: bold;
+}
+
+.contenedor__filtros {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  width: 100%;
+}
+
+.contenedor__select {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+}
+
+.identificador__select {
+  font-family: var(--ff-display);
+  font-weight: bold;
+  font-size: 1.4em;
+}
+
+#raza option, #categoria option {
+  font-family: var(--ff-normal);
+}
+
+#raza option:hover, #categoria option:hover {
+  cursor: pointer;
 }
 
 .listado__imagenes {
@@ -337,6 +375,5 @@ footer {
   max-width: 1200px;
 
   object-fit: cover;
-
   border-radius: 10px;
 }
