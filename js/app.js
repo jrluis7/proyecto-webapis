@@ -5,7 +5,7 @@ import { filtromain } from "/pages/filtro/funct.js";
 
 let home,contact,filtro,routes,usuario;
 let root = document.querySelector( '#root' );
-let keys = [];
+let keys = ["54d13939-bd09-450f-84f0-2603538f5eed","key2","key3","key4","key5"];
 let keyusando;
 
 async function loadPage( pagina ){
@@ -89,4 +89,6 @@ document.getElementById("botonmenu").addEventListener("click", function( event )
   document.getElementById("sendData").addEventListener("click", function( event ) {
     let indice = document.getElementById("form__select").selectedIndex;
     keyusando = keys[indice];
+    document.getElementById("menu__login").classList.add("inactivo");
+    console.log(keyusando);
   })
