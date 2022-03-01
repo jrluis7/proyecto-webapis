@@ -1,9 +1,7 @@
 export function homemain(){
 
-    console.log( "HOME" );
     
     debugger
-    
     
     async function getGato(){
         return new Promise( (resolve, reject)=>{
@@ -14,10 +12,12 @@ export function homemain(){
                 }
             }).then(datos=>{
                 return datos.json()
-            }).then(respuesta=>{
+            }).then((respuesta, error)=>{
                 // console.log(respuesta)
                 resolve(respuesta) 
                 // return respuesta
+                reject(error)
+                console.log(error)
             })
         })
     }
@@ -43,13 +43,11 @@ export function homemain(){
             for (let i = 0; i<vargato.length; i++){
 
                 if (vargato[i].breeds.length>0){
-                    console.log(vargato)
                     gatoConBreeds = vargato[i]
                     let gatoConBreedsJSON = JSON.stringify(vargato[i])
                     localStorage.setItem('gato', gatoConBreedsJSON)
                     break
                 }else{
-                    console.log("try")
                     // debugger
                     if(i>=vargato.length-1){
                         test2()
@@ -95,6 +93,8 @@ export function homemain(){
     let nodoRandom = document.querySelector('.aleatorio')
     nodoRandom.addEventListener('click', function(){
         test2()
+        clearInterval(interBarra)
+        setInterval(interBarra)
     })
 
 
@@ -117,26 +117,39 @@ export function homemain(){
             addInterval()
             nodoImagen.addEventListener('mouseleave', addInterval)
             nodoPause.classList.remove('play')
+            nodoPause.innerHTML =   `<svg xmlns="http://www.w3.org/2000/svg"  fill="currentColor" class="bi bi-pause-fill" viewBox="0 0 16 16">
+                                        <path d="M5.5 3.5A1.5 1.5 0 0 1 7 5v6a1.5 1.5 0 0 1-3 0V5a1.5 1.5 0 0 1 1.5-1.5zm5 0A1.5 1.5 0 0 1 12 5v6a1.5 1.5 0 0 1-3 0V5a1.5 1.5 0 0 1 1.5-1.5z"/>
+                                    </svg>`
         }else{
             clearInterval(interRandomGato)
+            clearInterval(interBarra)
             nodoImagen.removeEventListener('mouseleave', addInterval)
             nodoPause.classList.add('play')
+            nodoPause.innerHTML =   `<svg xmlns="http://www.w3.org/2000/svg"  fill="currentColor" class="bi bi-play-fill" viewBox="0 0 16 16">
+                                        <path d="m11.596 8.697-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393z"/>
+                                    </svg>`
         }
+        
     })
 
     nodoImagen.addEventListener('mouseenter', function(){
         clearInterval(interRandomGato)
+        clearInterval(interBarra)
         
     })
     nodoImagen.addEventListener('mouseleave', addInterval)
 
     function addInterval(){
         interRandomGato = setInterval(()=>test2(), 8000)
+        let i=0
         interBarra = setInterval(function(){
-            let i=0; i<100; i++
-            nodoBarra.style.width = `${i}%`
-            
-        }, 25)
+            if (i<100){
+                nodoBarra.style.width = `${i}%`
+                i++
+            }else{
+                i=0
+            }
+        }, 80)
     }
 
 
