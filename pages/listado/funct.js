@@ -16,6 +16,7 @@ export function listadomain (){
 
     console.log("LISTADO");
 
+    $('.swap__gatos').addClass('activo');
     inicializaListado ();
 
     $(document).ready( function () {
@@ -55,6 +56,22 @@ export function listadomain (){
                 });
                 $('.listado__imagenes').empty();
                 filtraImagenes ();
+            }
+        });
+
+        $(window).on({
+            scroll: function (){
+                let top_scroll = Math.round($(this).scrollTop());
+                let bodyHeight = Math.round($('body').height());
+                let windowHeight = Math.round($(window).height());
+                let mitadPagina = Math.round(bodyHeight / 2);
+                let mitadRecorrido = Math.round((top_scroll + windowHeight) / 2);
+                // console.log("mitadPagina", mitadPagina);
+                // console.log("mitadRecorrido", mitadRecorrido);
+                if (mitadRecorrido >= mitadPagina) {
+                    console.log(true);
+                    filtraImagenes();
+                }
             }
         });
     });
